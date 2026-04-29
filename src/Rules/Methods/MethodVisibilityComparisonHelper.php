@@ -15,7 +15,7 @@ final class MethodVisibilityComparisonHelper
 {
 
 	/** @return list<IdentifierRuleError> */
-	public function compare(ExtendedMethodReflection $prototype, ClassReflection $prototypeDeclaringClass, PhpMethodFromParserNodeReflection $method): array
+	public function compare(ExtendedMethodReflection $prototype, ClassReflection $prototypeDeclaringClass, PhpMethodFromParserNodeReflection $method, int $line): array
 	{
 		/** @var list<IdentifierRuleError> $messages */
 		$messages = [];
@@ -31,6 +31,7 @@ final class MethodVisibilityComparisonHelper
 					$prototype->getName(),
 				))
 					->nonIgnorable()
+					->line($line)
 					->identifier('method.visibility')
 					->build();
 			}
@@ -43,6 +44,7 @@ final class MethodVisibilityComparisonHelper
 				$prototype->getName(),
 			))
 				->nonIgnorable()
+				->line($line)
 				->identifier('method.visibility')
 				->build();
 		}
